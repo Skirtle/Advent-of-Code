@@ -1,6 +1,6 @@
 elves = []
 
-with open("input.txt", "r") as file:
+with open("inputPart1.txt", "r") as file:
 	txt = file.readlines()
 	elfNum = 0
 	elfCals = 0
