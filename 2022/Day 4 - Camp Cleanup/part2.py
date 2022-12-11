@@ -1,13 +1,16 @@
 filename = "input"
 
 
-def findContainments(pair):
+def findOverlaps(pair):
 	elves = pair.split(",")
 	elf1 = list(map(int, elves[0].split("-")))
 	elf2 = list(map(int, elves[1].split("-")))
 	
-	# elf1 contains elf2 OR elf2 contains elf1
-	if ((elf2[0] >= elf1[0] and elf2[1] <= elf1[1]) or elf1[0] >= elf2[0] and elf1[1] <= elf2[1]):
+	elf1Overlaps = elf2[1] in range(elf1[0], elf1[1] + 1) or elf1[1] in range(elf2[0], elf2[1] + 1)
+	elf2Overlaps = elf2[0] in range(elf1[0], elf1[1] + 1) or elf1[0] in range(elf2[0], elf2[1] + 1)
+	
+	# Elf starting section in range of other elf
+	if (elf1Overlaps or elf2Overlaps):
 		return True
 	return False
 
@@ -19,7 +22,7 @@ with open(filename + ".txt", "r") as file:
 
 sum = 0
 for pair in txt:
-	sum += findContainments(pair)
+	sum += findOverlaps(pair)
 print(f"{sum=}")
 if (filename == "test"):
-	assert(sum == 2)
+	assert(sum == 4)
