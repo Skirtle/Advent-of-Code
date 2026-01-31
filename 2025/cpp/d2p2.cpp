@@ -4,6 +4,7 @@
 
 long sum_false_range(long start, long end);
 bool isdigit(char c);
+long* get_factors(long num);
 
 int main() {
     long invalid_sum = 0;
@@ -68,24 +69,9 @@ long sum_false_range(long start, long end) {
     for (long id = start; id <= end; id++) {
         std::string id_str = std::to_string(id);
 
-        // Remove odd length IDs
-        if (id_str.length() % 2 != 0) continue; // In order for something to be repeated, there need to be two sets of it, meaning it has to be even
-        // std::cout << "ID: " << id << "\n";
-
-        // Split the IDs
-        long half_len = id_str.length() / 2;
-        std::string id_left, id_right;
-        for (long i = 0; i < half_len; i++) {
-            id_left.push_back(id_str[i]);
-            id_right.push_back(id_str[i + half_len]);
-        }
-
-        // Compare and add to sum
-        if (id_left == id_right) {
-            std::cout << "\t" << id << " is illegal\n";
-            sum += id;
-        }
-
+        // The invlaid IDs are now any ID that are ALL repeated sequeneces
+        // 1212121212 is invalid due to 5 repeated 12s
+        // We need to get the length of the ID and, for each factor, split it that many times and check if each sequence matches (including splitting each character by itself, but excluding the entire number by itself)
     }
 
 
