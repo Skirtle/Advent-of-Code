@@ -5,7 +5,7 @@
 int sum_false_range(int start, int end);
 
 int main() {
-    std::string filename = "./Inputs/day2_input.txt";
+    std::string filename = "../Inputs/day2_input.txt";
 
     // Open and read file
     std::ifstream file(filename);
