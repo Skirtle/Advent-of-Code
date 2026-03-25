@@ -1,12 +1,14 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 
 long sum_false_range(long start, long end);
 bool isdigit(char c);
-long* get_factors(long num);
+std::vector<long> get_factors(long num);
 
 int main() {
+    return 1;
     long invalid_sum = 0;
     std::string filename = "../Inputs/day2_input.txt";
 
@@ -68,6 +70,7 @@ long sum_false_range(long start, long end) {
     long sum = 0;
     for (long id = start; id <= end; id++) {
         std::string id_str = std::to_string(id);
+        std::vector<long> factors = get_factors(id);
 
         // The invlaid IDs are now any ID that are ALL repeated sequeneces
         // 1212121212 is invalid due to 5 repeated 12s
@@ -80,4 +83,14 @@ long sum_false_range(long start, long end) {
 
 bool isdigit(char c) {
     return c >= '0' && c <= '9';
+}
+
+std::vector<long> get_factors(long num) {
+    std::vector<long> factors;
+    for (long i = 1; i < num; i++) {
+        if (num % i == 0) {
+            factors.push_back(i);
+        }
+    }
+    return factors;
 }
